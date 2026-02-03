@@ -1,3 +1,5 @@
+{%- assign main_menu_linklist = linklists[section.settings.menu_type].links -%}
+
 <div class="relative bg-white" x-data="{ mobileMenuOpen: true }">
   <div class="mx-auto px-4 sm:px-6">
     <div class="flex justify-between items-center py-6 md:justify-start md:space-x-10">
@@ -14,7 +16,7 @@
 
       <!-- NAVIGATION MENU -->
       <nav x-data="{open: false}" class="hidden md:flex space-x-10">
-        {% for link in linklists.main-menu.links %}
+        {% for link in main_menu_linklist %}
 
           {% if link.links != blank %}
             <div class="relative">
@@ -70,7 +72,7 @@
         <div class="flex items-center justify-between pb-3">
           <div>
             {% comment %} <h1 class="text-lg text-gray-700 font-bold">{{ shop.name | upcase }}</h1> {% endcomment %}
-            <h1 class="text-lg text-gray-700 font-bold">{{ section.settings.mobile_menu_header | upcase }}</h1>
+            <h1 class="text-lg text-gray-700 font-bold">{{ section.settings.mobile_menu_header_navbar | upcase }}</h1>
           </div>
           <div class="-mr-2">
             <button x-on:click="mobileMenuOpen = false" type="button" class="bg-white rounded-md p-2 text-gray-700 font-bold">
@@ -82,7 +84,7 @@
         <!-- NAVIGATION LINKS FOR MOBILE MENU -->
         <div class="pt-3">
           <nav class="grid gap-y-7">
-            {% for link in linklists.main-menu.links %}
+            {% for link in main_menu_linklist %}
               {% assign link_handle = link.handle | replace: '-', '_' %}
               {% if link.links != blank %}
                 <div x-data="{ {{link_handle}}: false }" class="relative">
@@ -113,20 +115,45 @@
 </div>
 
 
-{% schema %}
+{% comment %} {% schema %}
   {
-    "name": "Navigational Bar",
+    "name": "Header Navbar",
     "tag": "section",
     
     "settings": [
       {
         "type": "text",
         "id": "mobile_menu_header",
-        "label": "Title",
-        "default": "Menu",
+        "label": "Shop Name",
+        "default": "PLEROSIA",
         "info": "This is the title for mobile menu navbar"
       }
       
+    ]
+  }
+{% endschema %} {% endcomment %}
+
+
+{% schema %}
+  {
+    "name": "Header Bar",
+    "tag": "section",
+    "class": "italic",
+    "settings": [
+      {
+        "type": "text",
+        "label": "Shop Name",
+        "id": "mobile_menu_header_navbar",
+        "default": "PLEROSIA",
+        "info": "This is the title for mobile menu navbar"
+      },
+      {
+        "type": "link_list",
+        "label": "Header Menu",
+        "id": "menu_type",
+        "default": "main-menu",
+        
+      },
     ]
   }
 {% endschema %}

@@ -1,0 +1,13 @@
+{
+  "name": "tepmplate 404",
+  "wrapper": "div#temp_404.temp_404[attribute-one=value]",
+  "sections": {
+    "template": {
+      "type": "template-404"
+    },
+    "custom-404-section": {
+      "type": "header"
+    }
+  },
+  "order": ["template", "custom-404-section"]
+}
