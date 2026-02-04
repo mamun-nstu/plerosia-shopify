@@ -1,13 +1,15 @@
 {
-  "name": "tepmplate 404",
+  "name": "template 404",
+  "layout": "theme-404",
   "wrapper": "div#temp_404.temp_404[attribute-one=value]",
   "sections": {
     "template": {
       "type": "template-404"
-    },
-    "custom-404-section": {
-      "type": "header"
     }
+    // "templ404": {
+    //   "type": "hello-template-404"
+    // }
   },
-  "order": ["template", "custom-404-section"]
+  "order": ["template"]
+  // "order": ["template", "templ404"]
 }
