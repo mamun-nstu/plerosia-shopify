@@ -71,25 +71,25 @@
 
     <div id="comment_form" class="mb-8">
       {%- form 'new_comment', article -%}
-        <div class="flex-1 mx-auto item-center justify-center max-w-4xl px4">
+        <div class="flex-1 mx-auto item-center justify-center max-w-4xl px4 mb-10">
           <div class="px-1 md:flex mb-3">
-            <div class="px-3 md:w-1/2">
-              <label for="comment_author" class="font-medium uppercase text-gray-700 mb-2">Name</label>
+            <div class="px-3 md:w-1/2 flex flex-col">
+              <label for="comment_author" class="font-medium uppercase text-gray-600 mb-2">Name</label>
               <input 
                 type="text" 
                 name="comment[author]" 
                 id="comment_author" 
                 placeholder="Your Name" 
-                class="w-full md:w-1/2 px-3 py-2 border rounded-md">
+                class="w-full md:w-1/2 px-3 py-2 border rounded-md text-gray-600">
             </div>
-            <div class="px-3 md:w-1/2">
-              <label for="comment_email" class="font-medium uppercase text-gray-700 mb-2">Email</label>
+            <div class="px-3 md:w-1/2 flex flex-col">
+              <label for="comment_email" class="font-medium uppercase text-gray-600 mb-2">Email</label>
               <input 
                 type="email" 
                 name="comment[email]" 
                 id="comment_email" 
                 placeholder="Your Email" 
-                class="w-full md:w-1/2 px-3 py-2 border rounded-md">
+                class="w-full md:w-1/2 px-3 py-2 border rounded-md text-gray-600">
             </div>
           </div>
         </div>
