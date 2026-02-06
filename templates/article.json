@@ -1,0 +1,34 @@
+{
+  "name": "template article",
+  "layout": "theme",
+  "wrapper": "div#temp_article.temp_article[attribute-one=value]",
+  "sections": {
+    "template": {
+      "type": "template-article",
+      "blocks": {
+        "title": {
+          "type": "article_title",
+          "content": "{{ article.title }}"
+        },
+        "author": {
+          "type": "article_author",
+          "content": "{{ article.author }}"
+        },
+        "published_on": {
+          "type": "article_published_date",
+          "content": "Published on: {{ article.published_at | date: '%B %d, %Y' }}"
+        },
+        "thumbnail": {
+          "type": "article_image",
+          "content": "By {{ article.author }}"
+        },
+        "content": {
+          "type": "article_content",
+          "content": "{{ article.content }}"
+        }
+      },
+      "block_order": ["title", "published_on", "thumbnail", "content"]
+    }
+  },
+  "order": ["template"]
+}
