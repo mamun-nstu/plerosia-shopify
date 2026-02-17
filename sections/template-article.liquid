@@ -1,33 +1,33 @@
 
       
-<article class="w-full flex justify-center">
+<article class="w-full flex justify-center" itemscope itemtype="http://schema.org/BlogPosting">
   <div class="max-w-4xl w-full px-4 py-10 text-center">
 
     {% for block in section.blocks %}
       {% case block.type %}
 
         {% when "article_title" %}
-          <h1 class="text-4xl font-bold mb-4">
+          <h1 class="text-4xl font-bold mb-4" itemprop="headline">
             {{ article.title }}
           </h1>
 
         {% when "article_author" %}
           {% if section.settings.enable_author %}
-            <p class="text-lg text-gray-600 mb-2">
-              By {{ article.author }}
+            <p class="text-lg text-gray-600 mb-2" itemscope itemtype="http://schema.org/Person">
+              <span itemprop="author">{{ article.author }}</span>
             </p>
           {% endif %}
 
         {% when "article_published_date" %}
           {% if section.settings.enable_date %}
-            <p class="text-base text-gray-500 mb-6">
+            <p class="text-base text-gray-500 mb-6" itemprop="datePublished dateCreated">
               {{ article.published_at | date: '%B %d, %Y' }}
             </p>
           {% endif %}
 
         {% when "article_image" %}
           {% if section.settings.enable_image and article.image %}
-            <div class="flex justify-center mb-8">
+            <div itemprop="image" class="flex justify-center mb-8">
               <img
                  width="400px" height="150px"
                 src="{{ article.image | img_url: 'large' }}"
@@ -40,7 +40,7 @@
 
         {% when "article_content" %}
           {% if section.settings.enable_content %}
-            <div class="prose prose-lg mx-auto text-xl leading-relaxed text-left">
+            <div itemprop="articleBody" class="prose prose-lg mx-auto text-xl leading-relaxed text-left">
               {{ article.content }}
             </div>
           {% endif %}
@@ -129,7 +129,7 @@
               Comment
             </label>
             <textarea
-              name="comment[content]"
+              name="comment[body]"
               id="comment_content"
               rows="5"
               required
@@ -156,6 +156,45 @@
 {%- endif -%}
 
 
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": {{ article.title | json }},
+    "articleBody": {{ article.content | strip_html | json }},
+
+    {%- if article.excerpt != blank -%}
+      "description": {{ article.excerpt | strip_html | json }},
+    {%- endif -%}
+
+    {%- if article.image -%}
+      "image": [
+        {{ article.image | img_url: "medium" | prepend: 'https:' | json }}
+      ],
+    {%- endif -%}
+
+    "datePublished": {{ article.published_at | date: format: "default" | json }},
+    "dateCreated": {{ article.created_at | date: format: "default" | json }},
+
+
+    "author": {
+      "@type": "Person",
+      "name": [
+        {{ article.author | json }}
+      ]
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": {{ shop.name | json }},
+      "logo": {
+        "@type": "ImageObject",
+        "url": {{ shop.logo | img_url: 'medium' | prepend: 'https:' | json }}
+      }
+    }
+    
+  }
+</script>
 
 
 

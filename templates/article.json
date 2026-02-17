@@ -1,13 +1,5 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
+  "name": "template article",
   "layout": "theme",
   "wrapper": "div#temp_article.temp_article[attribute-one=value]",
   "sections": {
@@ -16,36 +8,27 @@
       "blocks": {
         "title": {
           "type": "article_title",
-          "settings": {}
+          "content": "{{ article.title }}"
+        },
+        "author": {
+          "type": "article_author",
+          "content": "{{ article.author }}"
         },
         "published_on": {
           "type": "article_published_date",
-          "settings": {}
+          "content": "Published on: {{ article.published_at | date: '%B %d, %Y' }}"
         },
         "thumbnail": {
           "type": "article_image",
-          "settings": {}
+          "content": "By {{ article.author }}"
         },
         "content": {
           "type": "article_content",
-          "settings": {}
+          "content": "{{ article.content }}"
         }
       },
-      "block_order": [
-        "title",
-        "published_on",
-        "thumbnail",
-        "content"
-      ],
-      "settings": {
-        "enable_author": true,
-        "enable_date": true,
-        "enable_image": true,
-        "enable_content": true
-      }
+      "block_order": ["title", "published_on", "thumbnail", "content"]
     }
   },
-  "order": [
-    "template"
-  ]
+  "order": ["template"]
 }

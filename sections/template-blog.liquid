@@ -1,0 +1,71 @@
+
+<div class="mt-10 mx-20 ">
+
+  {%- paginate blog.articles by 3 -%}
+
+    <h1 class="text-center text-3xl">{{ blog.title }}</h1>
+
+    <div class="max-w-6xl mx-auto my-10">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {% comment %} <div class="flex flex-3"> {% endcomment %}
+            {%- for article in blog.articles -%}
+              
+              <div class="w-70 h-85 p-5 flex flex-col justify-center items-center rounded-xl border-5 border-indigo-200 bg-indigo-100">
+                <span class="text-2xl mb-3"> {{ article.title }} </span>
+
+                {%- if article.image -%}
+                  <img 
+                    src="{{ article.image | img_url: '600x' }}" 
+                    alt="{{ article.image.alt }}"
+                    class="w-[900px] h-[150px] object-cover rounded-lg mb-3">
+                    {%- else -%}
+                      {{ 'image' | placeholder_svg_tag: 'w-20' }}
+                {%- endif -%}
+
+                {%- if article.excerpt != blank -%}
+                  <div>
+                      <p class=""> hello human</p>
+                    </div>
+                  {%- else -%}
+                    
+                    <div>
+                      <p class=""> {{ article.content | strip_html | truncatewords: 15}}</p>
+                    </div>
+                  
+                {%- endif -%}
+              </div>
+              
+            {%- endfor -%}       
+          {% comment %} </div> {% endcomment %}
+      </div>
+    </div>
+    
+    
+    
+    {{- paginate | default_pagination -}}
+  {%- endpaginate -%}
+
+</div>
+
+{% schema %}
+  {
+    "name": "blog",
+    "settings": [
+      {
+        "type": "range",
+        "id": "number_of_blog_post",
+        "step": 1,
+        "max": 6,
+        "min": 1,
+        "label": "Blog post per page",
+        "default": 6,
+      }
+      
+    ]
+  }
+{% endschema %}
+
+
+
+
+
