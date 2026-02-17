@@ -1,7 +1,7 @@
 
 <div class="mt-10 mx-20 ">
 
-  {%- paginate blog.articles by 3 -%}
+  {%- paginate blog.articles by section.settings.number_of_blog_post -%}
 
     <h1 class="text-center text-3xl">{{ blog.title }}</h1>
 
@@ -49,13 +49,13 @@
 
 {% schema %}
   {
-    "name": "blog",
+    "name": "Blog",
     "settings": [
       {
         "type": "range",
         "id": "number_of_blog_post",
         "step": 1,
-        "max": 6,
+        "max": 12,
         "min": 1,
         "label": "Blog post per page",
         "default": 6,
