@@ -42,7 +42,11 @@
     
     
     
-    {{- paginate | default_pagination -}}
+    <div class="max-w-6xl mx-auto">
+      {%- render 'pagination', pagination: paginate -%}
+    </div>
+
+    {% comment %} <div class="h-50 mb-50 bg-green-100"> <h1 class="m-50">hello mamun </h1> </div> {% endcomment %}
   {%- endpaginate -%}
 
 </div>

@@ -16,7 +16,5 @@
       }
     }
   },
-  "order": [
-    "template"
-  ]
+  "order": ["template"]
 }
