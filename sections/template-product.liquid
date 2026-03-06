@@ -1,0 +1,87 @@
+
+<section class="max-w-6xl mx-auto p-8">
+
+  <div class="grid grid-cols-2 gap-10">
+
+    <!-- Product Image -->
+    <div>
+      {% if product.featured_image %}
+        <img 
+          src="{{ product.featured_image | img_url: '600x' }}"
+          class="w-100 h-100 border rounded-3xl"
+        >
+      {% endif %}
+    </div>
+
+    <!-- Product Info -->
+    <div>
+      <h1 class="text-3xl font-bold mb-4">
+        {{ product.title }}
+      </h1>
+
+      <p class="text-xl mb-4">
+        {{ product.price | money }}
+      </p>
+
+      {% comment %} <form method="post" action="{{ routes.cart_add_url }}">
+        <input 
+            type="hidden" 
+            name="id" 
+            value="{{ product.selected_or_first_available_variant.id }}"
+        >
+
+        <div class="mb-4">
+            <label class="block mb-2">Quantity</label>
+            <input 
+            type="number"
+            name="quantity"
+            value="1"
+            min="1"
+            class="border p-2 w-24"
+            >
+        </div>
+
+        <button 
+            type="submit"
+            class="bg-black text-white px-6 py-3">
+            Add To Cart
+        </button>
+      </form> {% endcomment %}
+
+
+      {% form 'product', product %}
+
+  <input 
+    type="hidden" 
+    name="id" 
+    value="{{ product.selected_or_first_available_variant.id }}"
+  >
+
+  <div class="mb-4">
+    <label class="block mb-2">Quantity</label>
+    <input 
+      type="number"
+      name="quantity"
+      value="1"
+      min="1"
+      class="border p-2 w-24"
+    >
+  </div>
+
+  <button 
+    type="submit"
+    class="bg-black text-white px-6 py-3">
+    Add To Cart
+  </button>
+
+{% endform %}
+
+      <div class="mt-6">
+        {{ product.description }}
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
